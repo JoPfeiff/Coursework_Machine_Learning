@@ -86,13 +86,11 @@ class Pipeline():
         self.best['features'] = None
         self.best['parameters'] = None
         self.best['estimator'] = None
+        self.scores = []
         try:
-            #self.classifier = steps['classifier']
             self.feature_optimizer = steps['feature_optimizer']
             self.hyper_optimizer = steps['hyper_optimizer']
-            self.feature_params = feature_params #params['feature_params']
-            #self.hyper_params = params['hyper_params']
-            #self.cv = cv
+            self.feature_params = feature_params
         except:
             print "Wrong params"
 
@@ -119,11 +117,18 @@ class Pipeline():
                 self.hyper_optimizer.fit(X_current, Y)
                 score = self.hyper_optimizer.best_score_
                 self.feature_optimizer.set_score(score)
+                grid_Scores = self.hyper_optimizer.grid_scores_
+
+                for elem in grid_Scores:
+                    self.scores.append(-elem[1])
+
                 if (self.score_comparer(score, self.best['score'])):
                     self.best['score'] = score
                     self.best['features'] = copy.copy(self.feature_optimizer.get_best_params())
                     self.best['parameters'] = copy.copy(self.hyper_optimizer.best_params_)
                     self.best['estimator'] = copy.copy(self.hyper_optimizer.best_estimator_)
+
+
 
         print "Fitting Finished"
 
@@ -133,7 +138,8 @@ class Pipeline():
         X_current = self.feature_optimizer.transform(X)
         return self.best['estimator'].predict(X_current)
 
-
+    def get_all_scores(self):
+        return self.scores
 
     def score_comparer(self, score1 , score2):
         if(score1 > score2):
@@ -147,36 +153,9 @@ class Pipeline():
         print "best score = " + str(-self.best['score'] )
         print "best features = " + str(self.best['features'] )
         print "best parameters = " + str(self.best['parameters'])
-        #print "best   = " + str(self.best['estimator'])
         print("###########################")
 
-
-
-    #def pipe(self, param_optimization, param_feat, hyper_param_optimization, classifier,  hyper_param_features, train_x, train_y):
-    #
-    #     all_params = self.generate_parameters(param_feat)
-    #
-    #     score = 0.0
-    #
-    #     best_hyper = None
-    #     best_param = None
-    #
-    #     for param in all_params:
-    #         param_optimization.fit_params(**param)
-    #         train_x = param_optimization.fit_transform(train_x, train_y)
-    #
-    #         hyper = hyper_param_optimization(classifier, hyper_param_features)
-    #         hyper.fit(train_x,train_y)
-    #         if(hyper.best_score() > score):
-    #             score = hyper.best_score()
-    #             best_hyper = copy.copy(hyper)
-    #             best_param = copy.copy(param)
-
-
     def generate_parameters(self, all_params):
-        # if (all_params is None):
-        #     all_params = self.feature_params
-        # first generate all parametersettings
         iterables = [all_params[param] for param in all_params]
         # then also generate all parameter definitions
         keys = [param for param in all_params]
@@ -187,7 +166,6 @@ class Pipeline():
 
 
 def get_data(path):
-    # path = 'Data/Email_spam/'
     train = np.load("../../Data/" + path + '/train.npy')
     try:
         test = np.load("../../Data/" + path + '/test_distribute.npy')
@@ -235,8 +213,6 @@ def optimize():
                         #'random_state':
                         }
 
-    #classifier.fit(train_x,train_y)
-    #classifier.predict(test_x)
 
     feature_selection = PCA()
     feature_params = {'n_components': range(1,6)  }
@@ -244,26 +220,10 @@ def optimize():
     feature_params = {'score_func': [f_regression], 'k': range(1,6) }
     feature_selection = SelectKBest()
 
-    # test = [[0]] * train_x.shape[0]
-    # #print(train_x.shape())
-    # train_x = np.append(train_x,test,1)
-    #
-    # test = [[0]] * test_x.shape[0]
-    # #print(train_x.shape())
-    # test_x = np.append(test_x,test,1)
-    #
-    # for i in range(0, test_x.shape[0]-1):
-    #     train_x[i,3] = 0
-
-    #ForwardSelection(train_x)
     feature_selection = ForwardSelection(train_x)
     feature_params = None
 
-
-    #print(train_x.shape())
-
     rmse_scorer = make_scorer(rmse, greater_is_better=False)
-        # rmse, needs_proba=True)
 
     clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=10)
     #clf = RandomizedSearchCV(classifier, param_distributions=tuned_parameters, n_iter = 1000,scoring=rmse_scorer, cv = 10)
