@@ -17,153 +17,14 @@ from sklearn.metrics import mean_squared_error
 from math import sqrt
 from sklearn.metrics import make_scorer
 # import forward_selection as for_selec
-import forward_selection as fs
+from forward_selection import ForwardSelection
+from pipeline import Pipeline
+import matplotlib.pyplot as plt
 
 import itertools as it
 
 def rmse(predictions, targets):
     return np.sqrt(mean_squared_error(predictions, targets))
-
-
-
-class ForwardSelection():
-
-    def __init__(self, training_data):
-        self.training_data = training_data
-        self.best_params = []
-        self.current_params = []
-        self.best_score = -float('inf')
-        self.betterized = True
-        self.heap = []
-
-
-    def set_score(self, score):
-        if score > self.best_score + 0.00000001:
-            self.best_params = copy.copy(self.current_params)
-            self.best_score = score
-            self.betterized = True
-
-    def get_new_heap(self):
-        if (len(self.heap) == 0) and not self.betterized:
-            return  self.betterized
-        elif(len(self.best_params) == self.training_data.shape[1]):
-            return False
-        else:
-            if len(self.heap) == 0:
-                self.set_new_heap()
-            return self.heap.pop()
-
-    def set_new_heap(self):
-        self.betterized = False
-
-        for i in range(0,self.training_data.shape[1]):
-            if i not in self.best_params:
-                elem = copy.copy(self.best_params)
-                elem.append(i)
-                self.heap.append(elem)
-
-    def fit_transform(self):
-        popped = self.get_new_heap()
-        if popped is False:
-            return popped
-        else:
-            self.current_params = popped
-            return self.training_data[:, popped]
-
-    def transform(self,data):
-        return data[:, self.best_params]
-
-
-    def get_best_params(self):
-        return self.best_params
-
-
-class Pipeline():
-
-    def __init__(self, steps, feature_params = None):
-        self.best = {}
-        self.best['score'] = -float('inf')
-        self.best['features'] = None
-        self.best['parameters'] = None
-        self.best['estimator'] = None
-        self.scores = []
-        try:
-            self.feature_optimizer = steps['feature_optimizer']
-            self.hyper_optimizer = steps['hyper_optimizer']
-            self.feature_params = feature_params
-        except:
-            print "Wrong params"
-
-    def fit(self, X, Y):
-
-        if self.feature_params is not None:
-            all_feature_params = self.generate_parameters(self.feature_params)
-            for features in all_feature_params:
-                self.feature_optimizer.set_params(**features)
-                X_current = self.feature_optimizer.fit_transform(X,Y)
-                self.hyper_optimizer.fit(X_current,Y)
-                score = self.hyper_optimizer.best_score_
-                if(self.score_comparer(score, self.best['score'])):
-                    self.best['score'] = score
-                    self.best['features'] = features
-                    self.best['parameters'] = self.hyper_optimizer.best_params_
-                    self.best['estimator'] = self.hyper_optimizer.best_estimator_
-
-        else:
-            while True:
-                X_current = self.feature_optimizer.fit_transform()
-                if X_current is False:
-                    break
-                self.hyper_optimizer.fit(X_current, Y)
-                score = self.hyper_optimizer.best_score_
-                self.feature_optimizer.set_score(score)
-                grid_Scores = self.hyper_optimizer.grid_scores_
-
-                for elem in grid_Scores:
-                    self.scores.append(-elem[1])
-
-                if (self.score_comparer(score, self.best['score'])):
-                    self.best['score'] = score
-                    self.best['features'] = copy.copy(self.feature_optimizer.get_best_params())
-                    self.best['parameters'] = copy.copy(self.hyper_optimizer.best_params_)
-                    self.best['estimator'] = copy.copy(self.hyper_optimizer.best_estimator_)
-
-
-
-        print "Fitting Finished"
-
-    def predict(self, X):
-        if self.feature_params is not None:
-            self.feature_optimizer.set_params(**self.best['features'])
-        X_current = self.feature_optimizer.transform(X)
-        return self.best['estimator'].predict(X_current)
-
-    def get_all_scores(self):
-        return self.scores
-
-    def score_comparer(self, score1 , score2):
-        if(score1 > score2):
-            return True
-        else:
-            return False
-
-
-    def print_best(self):
-        print("###########################")
-        print "best score = " + str(-self.best['score'] )
-        print "best features = " + str(self.best['features'] )
-        print "best parameters = " + str(self.best['parameters'])
-        print("###########################")
-
-    def generate_parameters(self, all_params):
-        iterables = [all_params[param] for param in all_params]
-        # then also generate all parameter definitions
-        keys = [param for param in all_params]
-        # then generate a dictionary with all combinations
-        return [{keys[i]: tup[i] for i in range(0, len(keys))} for tup in it.product(*iterables)]
-
-
-
 
 def get_data(path):
     train = np.load("../../Data/" + path + '/train.npy')
@@ -174,14 +35,34 @@ def get_data(path):
     train_x = train[:, 1:]
     train_y = train[:, 0]
     test_x = test[:, 1:]
+    test_y = test[:, 0]
 
-    return train_x, train_y, test_x
+    return train_x, train_y, test_x, test_y
+
+
+def plot_line_graph(arrays, labels, title_img, colors = ['ro-', 'bo-']):
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    for i in range(len(arrays)):
+        array = arrays[i]
+        index = range(len(array))
+        values = array
+        ax.plot(values, colors[i])
+        ax.set_xlabel('hyperparameter')
+        ax.set_ylabel('score')
+    plt.title(title_img)
+
+    #plt.legend(labels, loc = 'center')
+
+    plt.savefig("../Figures/"+title_img+".pdf")
+
+
 
 
 
 def optimize():
 
-    train_x, train_y, test_x = get_data('AirFoil')
+    train_x, train_y, test_x , test_y = get_data('AirFoil')
 
     classifier = LinearRegression()
     tuned_parameters = [{'fit_intercept': [True, False],
@@ -233,10 +114,35 @@ def optimize():
     pipe = Pipeline(steps, feature_params)
     pipe.fit(train_x, train_y)
     pipe.print_best()
+
+    plot_line_graph([pipe.get_all_scores()], ["Parameters"], "RMSE Score" ,colors = ['ro-'])
+
     prediction = pipe.predict(test_x)
     print "done"
 
-optimize()
+#optimize()
+
+
+
+def one_point_six():
+    classifier = Ridge()
+    train_x, train_y, test_x, test_y = get_data('AirFoil')
+    classifier.fit(train_x,train_y)
+    prediction = classifier.predict(test_x)
+    score = rmse(prediction, test_y)
+
+    print("\n##############################################################")
+    print("Default Ridge Classification RMSE Score = "+ str(score))
+    print("##############################################################\n")
+
+
+
+
+
+one_point_six()
+
+
+
     # best estimator :
     # Ridge(alpha=1.0, copy_X=True, fit_intercept=True, max_iter=800,
     #       normalize=False, random_state=None, solver='auto',

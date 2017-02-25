@@ -15,8 +15,8 @@ class ForwardSelection():
 
 
     def set_score(self, score):
-        if score > self.best_score:
-            self.best_params = self.current_params
+        if score > self.best_score + 0.00000001:
+            self.best_params = copy.copy(self.current_params)
             self.best_score = score
             self.betterized = True
 
@@ -39,15 +39,20 @@ class ForwardSelection():
                 elem.append(i)
                 self.heap.append(elem)
 
-    def transform(self, data = None):
-        if data == None:
-            data = self.training_data
+    def fit_transform(self):
         popped = self.get_new_heap()
         if popped is False:
             return popped
         else:
-            return data[:, popped]
+            self.current_params = popped
+            return self.training_data[:, popped]
 
+    def transform(self,data):
+        return data[:, self.best_params]
+
+
+    def get_best_params(self):
+        return self.best_params
 
 # train_x, train_y, test_x = pipe.get_data('AirFoil')
 # #print(train_x.shape)
