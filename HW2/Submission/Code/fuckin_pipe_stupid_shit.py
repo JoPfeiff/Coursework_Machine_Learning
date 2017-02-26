@@ -18,6 +18,7 @@ from math import sqrt
 from sklearn.metrics import make_scorer
 # import forward_selection as for_selec
 from forward_selection import ForwardSelection
+from backward_selection_drop_worst import BackwardSelectionDropWorst
 from pipeline import Pipeline
 import matplotlib.pyplot as plt
 from grid_search_cv import GridSearchCV_new
@@ -115,6 +116,7 @@ def one_point_nine():
     # feature_selection = SelectKBest()
 
     feature_selection = ForwardSelection(train_x)
+    #feature_selection = BackwardSelectionDropWorst(train_x)
     feature_params = None
 
     rmse_scorer = make_scorer(rmse, greater_is_better=False)

@@ -18,6 +18,7 @@ from math import sqrt
 from sklearn.metrics import make_scorer
 from forward_selection import ForwardSelection
 from backward_selection import BackwardSelection
+from backward_selection_drop_worst import BackwardSelectionDropWorst
 from pipeline import Pipeline
 import matplotlib.pyplot as plt
 from grid_search_cv import GridSearchCV_new
@@ -123,12 +124,12 @@ def two_point_one():
     # feature_params = {'score_func': [f_regression], 'k': range(1,6) }
     # feature_selection = SelectKBest()
 
-    # train_x = train_x[:, [9, 14, 19, 16, 1, 123,137,128,45,56]]
-    # test_x = test_x[:, [9, 14, 19, 16, 1, 123,137,128,45,56]]
+    train_x = train_x[:, [9, 14, 19, 16, 1, 123,137,128,45,56]]
+    test_x = test_x[:, [9, 14, 19, 16, 1, 123,137,128,45,56]]
 
 
     # feature_selection = ForwardSelection(train_x)
-    feature_selection = BackwardSelection(train_x)
+    feature_selection = BackwardSelectionDropWorst(train_x)
     feature_params = None
 
     rmse_scorer = make_scorer(rmse, greater_is_better=False)
@@ -138,23 +139,17 @@ def two_point_one():
 
     steps = {'feature_optimizer': feature_selection, 'hyper_optimizer': clf}
 
-    # best
-    # score = 1.8521369528
-    # best
-    # feature_selection.best_params = [9, 14, 19, 16, 1]
 
-    # parameters = {'alpha': 0.0}
-    # classifier.set_params(**parameters)
     pipe = Pipeline(steps, feature_params)
-    # clf.fit(train_x,train_y)
 
-    # pipe.best['estimator'] = classifier
     pipe.fit(train_x, train_y)
     pipe.print_best()
-
-    #plot_line_graph([pipe.get_all_scores()], ["Parameters"], "RMSE Score" ,colors = ['ro-'])
-
     prediction = pipe.predict(test_x)
+
+    # clf.fit(train_x, train_y)
+    # prediction = clf.predict(test_x)
+
+
     file = "../Predictions/" + path + "/" + "Ridge_Regression" + "_best.csv"
     kaggleize(prediction, file)
     # best_score = rmse(prediction,test_y)
