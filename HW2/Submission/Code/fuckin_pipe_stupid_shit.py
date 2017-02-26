@@ -28,15 +28,27 @@ def rmse(predictions, targets):
     return np.sqrt(mean_squared_error(predictions, targets))
 
 def get_data(path):
-    train = np.load("../../Data/" + path + '/train.npy')
-    try:
-        test = np.load("../../Data/" + path + '/test_distribute.npy')
-    except:
-        test = np.load("../../Data/" + path + '/test_private.npy')
-    train_x = train[:, 1:]
-    train_y = train[:, 0]
-    test_x = test[:, 1:]
-    test_y = test[:, 0]
+    path = '../../Data/AirFoil/'
+    train = np.load(path + 'train.npy')
+    test = np.load(path + 'test_private.npy')
+    train_x = train[:, 0:train.shape[1] - 1]
+    train_y = train[:, -1]
+    test_x = test[:, 0:test.shape[1] - 1]
+
+    # Real test targets/outputs
+    test_y = test[:, -1]
+    # print "Air Foil:", train_x.shape, train_y.shape, test_x.shape, test_y.shape
+    #
+    #
+    # train = np.load("../../Data/" + path + '/train.npy')
+    # try:
+    #     test = np.load("../../Data/" + path + '/test_distribute.npy')
+    # except:
+    #     test = np.load("../../Data/" + path + '/test_private.npy')
+    # train_x = train[:, 1:]
+    # train_y = train[:, 0]
+    # test_x = test[:, 1:]
+    # test_y = test[:, 0]
 
     return train_x, train_y, test_x, test_y
 
@@ -75,7 +87,7 @@ def one_point_nine():
 
     classifier = Ridge()
 
-    tuned_parameters = {'alpha': np.arange(0.00,0.5,0.01),
+    tuned_parameters = {'alpha': np.arange(0.00,0.01,0.001),
                         'copy_X': [True,False],
                         'fit_intercept': [True,False],
                         'max_iter': range(800,1600,200),
@@ -146,7 +158,7 @@ def one_point_seven():
     train_x, train_y, test_x, test_y = get_data('AirFoil')
     rmse_scorer = make_scorer(rmse, greater_is_better=False)
     #Optimizing
-    tuned_parameters = {'alpha': np.arange(0.01, .10, 0.01),
+    tuned_parameters = {'alpha': np.arange(0.001, .0101, 0.001),
                         'copy_X': [True, False],
                         'fit_intercept': [True, False],
                         #'max_iter': range(800, 1600, 200),
@@ -157,14 +169,14 @@ def one_point_seven():
                         }
 
     clf = RandomizedSearchCV(classifier, param_distributions=tuned_parameters, n_iter=1000, scoring=rmse_scorer, cv=10)
-    clf.fit(train_x,train_y)
-    print clf.best_estimator_
+    #clf.fit(train_x,train_y)
+    #print clf.best_estimator_
 
 
     ###################################################
     # Graph for different alpha values
     ###################################################
-    x_ticks = np.arange(0.00, 0.5, 0.02)
+    x_ticks = np.arange(0.00, 0.05, 0.001)
     tuned_parameters = {'normalize': [True],
                         'solver': ['sag'],
                         'fit_intercept': [True],
@@ -242,9 +254,9 @@ def one_point_seven():
     best_parameters = {'normalize': True,
                             'solver': 'sag',
                             'fit_intercept': True,
-                            'tol': 0.2,
+                            'tol': 0.2, #'tol': 0.069999999999999993
                             'copy_X': True,
-                            'alpha': 0.04}
+                            'alpha': 0.007}#0.04} # 4.7880535399
     classifier.set_params(**best_parameters)
     classifier.fit(train_x,train_y)
     prediction = classifier.predict(test_x)
@@ -295,6 +307,7 @@ def one_point_eight():
 
     #plot_line_graph([pipe.get_all_scores()], ["Parameters"], "RMSE Score" ,colors = ['ro-'])
 
+
     X_current = feature_selection.transform(test_x)
     prediction = best['estimator'].predict(X_current)
     best_score = rmse(prediction, test_y)
@@ -306,6 +319,9 @@ def one_point_eight():
 
 
 
+# one_point_six()
+#one_point_seven()
+# one_point_eight()
 one_point_nine()
 
 

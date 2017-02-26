@@ -20,6 +20,8 @@ from sklearn.metrics import make_scorer
 from forward_selection import ForwardSelection
 import matplotlib.pyplot as plt
 
+import time
+
 import itertools as it
 
 
@@ -57,6 +59,7 @@ class Pipeline():
 
         else:
             while True:
+                start = time.time()
                 X_current = self.feature_optimizer.fit_transform()
                 if X_current is False:
                     break
@@ -73,6 +76,10 @@ class Pipeline():
                     self.best['features'] = copy.copy(self.feature_optimizer.get_best_params())
                     self.best['parameters'] = copy.copy(self.hyper_optimizer.best_params_)
                     self.best['estimator'] = copy.copy(self.hyper_optimizer.best_estimator_)
+
+                end = time.time()
+
+                print("one iteration = %s seconds, current heap is %s long") %(end - start, len(self.feature_optimizer.heap) )
 
 
 
