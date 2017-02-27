@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f975c4f-9a16-4476-8ac6-e2aca23b0851" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../UMass_ML/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UMass_ML/HW2/HW2.pdf" afterPath="$PROJECT_DIR$/../UMass_ML/HW2/HW2.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Figures/RMSE Score - Alpha.pdf" afterPath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Figures/RMSE Score - Alpha.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Figures/RMSE Score - Tol.pdf" afterPath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Figures/RMSE Score - Tol.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UMass_ML/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../UMass_ML/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/backward_selection_drop_worst.py" afterPath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/backward_selection_drop_worst.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py" afterPath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/pipeline.py" afterPath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/pipeline.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/question_2.py" afterPath="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/question_2.py" />
     </list>
     <ignored path="HW1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -19,12 +26,13 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Machine_Learning$pipe.coverage" NAME="pipe Coverage Results" MODIFIED="1487466134389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code" />
-    <SUITE FILE_PATH="coverage/Machine_Learning$fuckin_pipe_stupid_shit.coverage" NAME="fuckin_pipe_stupid_shit Coverage Results" MODIFIED="1487973731963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code" />
+    <SUITE FILE_PATH="coverage/Machine_Learning$fuckin_pipe_stupid_shit.coverage" NAME="fuckin_pipe_stupid_shit Coverage Results" MODIFIED="1488173769947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code" />
     <SUITE FILE_PATH="coverage/HW1$3_default_classifier_accuracy.coverage" NAME="3_default_classifier_accuracy Coverage Results" MODIFIED="1486576649142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Submission/Code" />
     <SUITE FILE_PATH="coverage/HW1$4_and_5_hyperparameters.coverage" NAME="4_and_5_hyperparameters Coverage Results" MODIFIED="1486576754701" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Submission/Code" />
     <SUITE FILE_PATH="coverage/HW1$6_get_creative.coverage" NAME="6_get_creative Coverage Results" MODIFIED="1487364219312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Submission/Code" />
     <SUITE FILE_PATH="coverage/Machine_Learning$forward_selection.coverage" NAME="forward_selection Coverage Results" MODIFIED="1487965607577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code" />
     <SUITE FILE_PATH="coverage/HW1$run_me.coverage" NAME="run_me Coverage Results" MODIFIED="1487364226722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Submission/Code" />
+    <SUITE FILE_PATH="coverage/Machine_Learning$question_2.coverage" NAME="question_2 Coverage Results" MODIFIED="1488146491124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -35,23 +43,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="four_and_five_hyperparameters.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../UMass_ML/HW1/Submission/Code/four_and_five_hyperparameters.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1680">
-              <caret line="132" column="25" selection-start-line="132" selection-start-column="25" selection-end-line="132" selection-end-column="25" />
-              <folding>
-                <element signature="e#2#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fuckin_pipe_stupid_shit.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fuckin_pipe_stupid_shit.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="249" column="5" selection-start-line="249" selection-start-column="5" selection-end-line="249" selection-end-column="5" />
+            <state relative-caret-position="2052">
+              <caret line="325" column="17" selection-start-line="325" selection-start-column="17" selection-end-line="325" selection-end-column="17" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -59,64 +55,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../UMass_ML/.gitignore">
+      <file leaf-file-name="question_2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/question_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="extmath.py" pinned="false" current-in-tab="false">
-        <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/utils/extmath.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="grid_search.py" pinned="false" current-in-tab="false">
-        <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/grid_search.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="847">
-              <caret line="234" column="0" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pydev_monkey_qt.py" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_monkey_qt.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forward_selection.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/forward_selection.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="-795">
+              <caret line="100" column="39" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
               <folding>
-                <element signature="e#1#13#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pydevd.py" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <file leaf-file-name="backward_selection_drop_worst.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/backward_selection_drop_worst.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="963" column="0" selection-start-line="963" selection-start-column="0" selection-end-line="963" selection-end-column="0" />
+            <state relative-caret-position="915">
+              <caret line="72" column="40" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="40" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/pipeline.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="537">
+              <caret line="92" column="49" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,9 +113,14 @@
         <option value="$PROJECT_DIR$/../UMass_ML/HW1/Submission/Code/six_get_creative.py" />
         <option value="$PROJECT_DIR$/../UMass_ML/HW1/Submission/Code/four_and_five_hyperparameters.py" />
         <option value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/pipe.py" />
-        <option value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/forward_selection.py" />
-        <option value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py" />
         <option value="$PROJECT_DIR$/../UMass_ML/.gitignore" />
+        <option value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/forward_selection.py" />
+        <option value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/grid_search_cv.py" />
+        <option value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/backward_selection.py" />
+        <option value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/backward_selection_drop_worst.py" />
+        <option value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/pipeline.py" />
+        <option value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/question_2.py" />
+        <option value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py" />
       </list>
     </option>
   </component>
@@ -214,6 +187,130 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="HW2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Machine_Learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UMass_ML" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HW2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Submission" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Predictions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Machine_Learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UMass_ML" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HW2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Submission" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Figures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Machine_Learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UMass_ML" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HW2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Submission" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Machine_Learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UMass_ML" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HW2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BlogFeedback" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Machine_Learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UMass_ML" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HW2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AirFoil" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Machine_Learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UMass_ML" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="HW1" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -258,46 +355,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Machine_Learning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UMass_ML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HW1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Machine_Learning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UMass_ML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HW1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Email_spam" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -321,30 +378,15 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/HW1" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="Python.fuckin_pipe_stupid_shit">
-    <configuration default="false" name="6_get_creative" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Submission/Code" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="HW1" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Submission/Code/six_get_creative.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="run_me" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -413,6 +455,24 @@
       <module name="Machine_Learning" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/forward_selection.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="question_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Machine_Learning" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/question_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -626,19 +686,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.6_get_creative" />
-      <item index="1" class="java.lang.String" itemvalue="Python.run_me" />
-      <item index="2" class="java.lang.String" itemvalue="Python.pipe" />
-      <item index="3" class="java.lang.String" itemvalue="Python.fuckin_pipe_stupid_shit" />
-      <item index="4" class="java.lang.String" itemvalue="Python.forward_selection" />
+      <item index="0" class="java.lang.String" itemvalue="Python.run_me" />
+      <item index="1" class="java.lang.String" itemvalue="Python.pipe" />
+      <item index="2" class="java.lang.String" itemvalue="Python.fuckin_pipe_stupid_shit" />
+      <item index="3" class="java.lang.String" itemvalue="Python.forward_selection" />
+      <item index="4" class="java.lang.String" itemvalue="Python.question_2" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.fuckin_pipe_stupid_shit" />
-        <item index="1" class="java.lang.String" itemvalue="Python.forward_selection" />
-        <item index="2" class="java.lang.String" itemvalue="Python.pipe" />
-        <item index="3" class="java.lang.String" itemvalue="Python.run_me" />
-        <item index="4" class="java.lang.String" itemvalue="Python.6_get_creative" />
+        <item index="1" class="java.lang.String" itemvalue="Python.question_2" />
+        <item index="2" class="java.lang.String" itemvalue="Python.forward_selection" />
+        <item index="3" class="java.lang.String" itemvalue="Python.pipe" />
+        <item index="4" class="java.lang.String" itemvalue="Python.run_me" />
       </list>
     </recent_temporary>
   </component>
@@ -667,25 +727,67 @@
       <option name="project" value="LOCAL" />
       <updated>1487974866636</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="scores">
+      <created>1487977338934</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1487977338934</updated>
+    </task>
+    <task id="LOCAL-00004" summary="scores">
+      <created>1488041141038</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1488041141038</updated>
+    </task>
+    <task id="LOCAL-00005" summary="scores">
+      <created>1488063722140</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1488063722140</updated>
+    </task>
+    <task id="LOCAL-00006" summary="scores">
+      <created>1488136868030</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1488136868030</updated>
+    </task>
+    <task id="LOCAL-00007" summary="scores">
+      <created>1488136882891</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1488136882891</updated>
+    </task>
+    <task id="LOCAL-00008" summary="backward drop worst">
+      <created>1488140597631</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1488140597631</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29159936" sideWeight="0.49233717" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37534246" sideWeight="0.503231" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32876712" sideWeight="0.45315024" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.49676898" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.49676898" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32876712" sideWeight="0.5468498" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37534246" sideWeight="0.49676898" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29159936" sideWeight="0.50766283" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.360274" sideWeight="0.7657512" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -707,7 +809,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="HW1 Complete&#10;HW2 under construction" />
-    <option name="LAST_COMMIT_MESSAGE" value="HW1 Complete&#10;HW2 under construction" />
+    <MESSAGE value="scores" />
+    <MESSAGE value="backward drop worst" />
+    <option name="LAST_COMMIT_MESSAGE" value="backward drop worst" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -728,61 +832,46 @@
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/forward_selection.py</url>
-          <line>8</line>
-          <option name="timeStamp" value="63" />
+          <url>file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py</url>
+          <line>173</line>
+          <option name="timeStamp" value="105" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py</url>
-          <line>276</line>
-          <option name="timeStamp" value="77" />
+          <line>315</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/backward_selection.py</url>
+          <line>11</line>
+          <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py</url>
-          <line>73</line>
-          <option name="timeStamp" value="83" />
+          <line>194</line>
+          <option name="timeStamp" value="113" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py</url>
-          <line>133</line>
-          <option name="timeStamp" value="85" />
+          <line>88</line>
+          <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py</url>
-          <line>132</line>
-          <option name="timeStamp" value="86" />
+          <url>file:///anaconda/lib/python2.7/site-packages/sklearn/utils/extmath.py</url>
+          <line>178</line>
+          <option name="timeStamp" value="127" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py</url>
-          <line>258</line>
-          <option name="timeStamp" value="90" />
+          <url>file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/backward_selection_drop_worst.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="128" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="91" />
+      <option name="time" value="129" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW1/Submission/Code/run_me.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-          <folding>
-            <element signature="e#20#68#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW1/Submission/Code/four_and_five_hyperparameters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#2#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../UMass_ML/HW1/Submission/Code/six_get_creative.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1560">
@@ -1013,14 +1102,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/metrics/scorer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="344" column="34" selection-start-line="344" selection-start-column="15" selection-end-line="344" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/feature_selection/univariate_selection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4710">
@@ -1041,14 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="582">
           <caret line="267" column="0" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/cross_validation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="1605" column="49" selection-start-line="1605" selection-start-column="16" selection-end-line="1605" selection-end-column="49" />
           <folding />
         </state>
       </provider>
@@ -1077,24 +1150,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_monkey_qt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/forward_selection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/grid_search.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="847">
@@ -1103,39 +1158,169 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/utils/extmath.py">
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+        <state relative-caret-position="15">
+          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW1/Submission/Code/four_and_five_hyperparameters.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_monkey_qt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="132" column="25" selection-start-line="132" selection-start-column="25" selection-end-line="132" selection-end-column="25" />
-          <folding>
-            <element signature="e#2#31#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="124">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py">
+    <entry file="file:///anaconda/lib/python2.7/site-packages/matplotlib/axes/_base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="249" column="5" selection-start-line="249" selection-start-column="5" selection-end-line="249" selection-end-column="5" />
+        <state relative-caret-position="468">
+          <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/grid_search_cv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="125" column="35" selection-start-line="125" selection-start-column="35" selection-end-line="125" selection-end-column="35" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../UMass_ML/.gitignore">
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/kaggle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+        <state relative-caret-position="90">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="16" selection-end-column="4" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/forward_selection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/backward_selection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW1/Submission/Code/four_and_five_hyperparameters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="940">
+          <caret line="282" column="25" selection-start-line="282" selection-start-column="25" selection-end-line="282" selection-end-column="25" />
+          <folding>
+            <element signature="e#2#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/run_me.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/linear_model/ridge.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="618" column="0" selection-start-line="618" selection-start-column="0" selection-end-line="618" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/linear_model/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/metrics/scorer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/cross_validation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="1565" column="0" selection-start-line="1565" selection-start-column="0" selection-end-line="1565" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/externals/joblib/parallel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="799" column="0" selection-start-line="799" selection-start-column="0" selection-end-line="799" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///anaconda/lib/python2.7/site-packages/sklearn/utils/extmath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/question_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-795">
+          <caret line="100" column="39" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/backward_selection_drop_worst.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="72" column="40" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="92" column="49" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../UMass_ML/HW2/Submission/Code/fuckin_pipe_stupid_shit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2052">
+          <caret line="325" column="17" selection-start-line="325" selection-start-column="17" selection-end-line="325" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -22,10 +22,13 @@ class BackwardSelectionDropWorst():
 
 
     def set_score(self, score):
+
         if score > self.last_heap_best_score + 0.00000001:
             if score > self.best_score + 0.00000001:
                 #self.best_params = copy.copy(self.current_params)
                 self.best_score = score
+                if self.last_heap_best_score == -float('inf'):
+                    self.last_heap_best_score = self.best_score
 
             self.betterized = True
             for elem in self.best_params:

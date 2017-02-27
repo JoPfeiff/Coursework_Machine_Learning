@@ -321,9 +321,9 @@ def one_point_eight():
 
 
 
-# one_point_six()
-#one_point_seven()
-# one_point_eight()
+one_point_six()
+one_point_seven()
+one_point_eight()
 one_point_nine()
 
 

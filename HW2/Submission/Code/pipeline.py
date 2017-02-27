@@ -88,8 +88,18 @@ class Pipeline():
     def predict(self, X):
         if self.feature_params is not None:
             self.feature_optimizer.set_params(**self.best['features'])
+        #self.best['estimator'].
         X_current = self.feature_optimizer.transform(X)
-        return self.best['estimator'].predict(X_current)
+        prediction = self.best['estimator'].predict(X_current)
+        return prediction
+
+    def fit_predict(self, train_x, train_y, test_x, classifier):
+        train_x = self.feature_optimizer.transform(train_x)
+        test_x = self.feature_optimizer.transform(test_x)
+        classifier.set_params(**self.best['parameters'])
+        classifier.fit(train_x,train_y)
+        prediction = classifier.predict(test_x)
+        return prediction
 
     def get_all_scores(self):
         return self.scores
