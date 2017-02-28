@@ -30,12 +30,7 @@ def rmse(predictions, targets):
     return np.sqrt(mean_squared_error(predictions, targets))
 
 def get_data(path):
-    # train = np.load("../../Data/" + path + '/train.npy')
-    # test = np.load("../../Data/" + path + '/test_distribute.npy')
-    # train_x = train[:, 1:]
-    # train_y = train[:, 0]
-    # test_x = test[:, :]
-    # #test_y = test[:, 0]
+
 
     path = '../../Data/BlogFeedback/'
     train = np.load(path + 'train.npy')
@@ -43,9 +38,6 @@ def get_data(path):
     train_x = train[:, 0:train.shape[1] - 1]
     train_y = train[:, -1]
     test_x = test[:, 0:test.shape[1] - 1]
-    # this is dummy vector of predictions
-    #test_y = test[:, -1]
-    #print "Blog Feedback:", train_x.shape, train_y.shape, test_x.shape, test_y.shape
 
 
     return train_x, train_y, test_x
@@ -79,116 +71,61 @@ def plot_line_graph(arrays, labels, title_img, x_ticks, tuning_parameter, colors
     plt.savefig("../Figures/"+title_img+".pdf")
 
 
-#best parameters = {'normalize': True, 'tol': 0.069999999999999993, 'fit_intercept': True, 'copy_X': False, 'alpha': 0.0070000000000000001, 'solver': 'sag', 'max_iter': 1200}
-
-
-
 def two_point_one():
     path = 'BlogFeedback'
     train_x, train_y, test_x = get_data(path)
 
-    # classifier = LinearRegression()
-    # tuned_parameters = [{'fit_intercept': [True, False],
-    #                      'normalize': [True, False],
-    #                      'copy_X': [True, False],
-    #                      'n_jobs': [-1],  # 2
-    #                      #'classifier__base_estimator__max_depth': range(3, 12, 3),  # 4
-    #                     }]
-
     classifier = Ridge()
 
-    tuned_parameters = {'alpha': np.arange(10000,20000,500.0),
-                        'copy_X': [True],
-                        'fit_intercept': [False],
-                        #'max_iter': range(1000),
-                        'normalize': [True],
-                        #'solver': ['auto', 'svd', 'cholesky', 'lsqr', 'sparse_cg', 'sag'],
-                         #'tol': np.arange(0.00,0.1,0.01)
-                        # 'random_state':
+# BEST PARAMS
+#######################################
+    second_best =  [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 25, 31, 32, 33, 36, 37, 39, 40, 46, 51, 54, 55, 57, 62, 65, 70, 71, 76, 84, 87, 91, 94, 103, 105, 106, 107, 112, 115, 122, 127, 128, 130, 132, 133, 135, 136, 145, 146, 147, 151, 163, 170, 172, 174, 177, 180, 184, 188, 191, 195, 200, 203, 206, 207, 210, 213, 214, 218, 219, 223, 224, 226, 228, 234, 236, 240, 241, 243, 246, 248, 251, 252, 255, 259, 261, 262, 263, 266, 267, 271, 272, 274, 275, 277]
+    best_features = [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 25, 31, 32, 33, 36, 37,
+                     39, 40, 46, 51, 54, 55, 57, 62, 65, 70, 71, 76, 84, 87, 91, 94, 103, 105, 106, 107, 112, 115, 122,
+                     127, 128, 130, 132, 133, 135, 136, 145, 146, 147, 151, 163, 170, 172, 174, 177, 180, 184, 188, 191,
+                     195, 200, 203, 206, 207, 210, 213, 214, 218, 219, 223, 224, 226, 228, 234, 236, 240, 241, 243, 246,
+                     248, 251, 252, 255, 259, 261, 262, 263, 266, 267, 271, 272, 274, 275, 277]
+
+    # [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 25, 31, 32, 33, 36, 37, 39, 40, 46, 51, 54, 55, 57, 62, 65, 70, 71, 76, 84, 87, 91, 94, 103, 105, 106, 107, 112, 115, 122, 127, 128, 130, 132, 133, 135, 136, 145, 146, 147, 151, 163, 170, 172, 174, 177, 180, 184, 188, 191, 195, 200, 203, 206, 207, 210, 213, 214, 218, 219, 223, 224, 226, 228, 234, 236, 240, 241, 243, 246, 248, 251, 252, 255, 259, 261, 262, 263, 266, 267, 271, 272, 274, 275, 277]
+# [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 25, 31, 32, 33, 36, 37, 39, 40, 46, 51, 54, 55, 57, 62, 65, 70, 71, 76, 84, 87, 91, 94, 103, 105, 106, 107, 112, 115, 122, 127, 128, 130, 132, 133, 135, 136, 145, 146, 147, 151, 163, 170, 172, 174, 177, 180, 184, 188, 191, 195, 200, 203, 206, 207, 210, 213, 214, 218, 219, 223, 224, 226, 228, 234, 236, 240, 241, 243, 246, 248, 251, 252, 255, 259, 261, 262, 263, 266, 267, 271, 272, 274, 275, 277]
+#######################################
+
+
+
+    tuned_parameters = {'alpha': np.arange(5000,7000,100.0),
+                        'tol': np.arange(0.00,0.1,0.01)
                         }
 
+    best_params = {'alpha': 6100.0, 'tol': 0.0}
+    # score = 29.4503547388
+    # kaggle = 24.47664
 
-    best_params = {'alpha': 8900,#np.arange(8800,9001,100.0),
-                        'copy_X': True,
-                        'fit_intercept': False,
-                        #'max_iter': range(1000),
-                        'normalize': True,
-                        #'solver': ['auto', 'svd', 'cholesky', 'lsqr', 'sparse_cg', 'sag'],
-                         'tol': 0.1#np.arange(0.1,0.31,0.1)
-                        # 'random_state':
-                        }
-
-
-
-    # tuned_parameters = {'alpha': np.arange(1.0,3.0,0.4)#,
-    #                     #'copy_X': [True,False],
-    #                     #'fit_intercept': [True,False],
-    #                     #'max_iter': range(800,1600,200),
-    #                     #'normalize': [True,False],
-    #                     #'solver': ['auto', 'svd', 'cholesky', 'lsqr', 'sparse_cg', 'sag'],
-    #                     #'tol': np.arange(0.8,1.4,0.2)
-    #                     #'random_state':
-    #                     }
-
-
-    # feature_selection = PCA()
-    # feature_params = {'n_components': range(1,6)  }
-    #
-    # feature_params = {'score_func': [f_regression], 'k': range(1,6) }
-    # feature_selection = SelectKBest()
-
-    # train_x = train_x[:, [ 0,3, 5, 9, 14, 19, 16, 1, 123,137,128,45,56]]
-    # test_x = test_x[:, [ 0,3, 5, 9, 14, 19, 16, 1, 123,137,128,45,56]]
-
-
-    # feature_selection = ForwardSelection(train_x)
-    feature_selection = ForwardSelection(train_x)
+    feature_selection = BackwardSelection(train_x)
     feature_params = None
+    feature_selection.set_best_features(best_features)
 
     rmse_scorer = make_scorer(rmse, greater_is_better=False)
 
-    clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=5)
-    # clf = RandomizedSearchCV(classifier, param_distributions=tuned_parameters, n_iter = 1000,scoring=rmse_scorer, cv = 10)
+    clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=2)
 
     steps = {'feature_optimizer': feature_selection, 'hyper_optimizer': clf}
 
 
-    pipe = Pipeline(steps, feature_params)
+    # pipe = Pipeline(steps, feature_params)
+    #
+    # pipe.fit(train_x, train_y)
+    # pipe.print_best()
+    # prediction = pipe.predict(train_x)
 
-    pipe.fit(train_x, train_y)
-    pipe.print_best()
-    # best = [0, 1, 3, 4, 7, 9, 10, 11, 12, 13, 15, 16, 18, 19, 21, 22, 25, 26, 29, 30, 31, 32, 33, 35, 36, 37, 38, 39, 40, 41,
-    #  45, 46, 48, 49, 51, 52, 54, 55, 63, 66, 67, 70, 71, 74, 76, 81, 82, 84, 87, 94, 103, 104, 105, 106, 107, 109, 113,
-    #  114, 115, 116, 118, 120, 121, 124, 133, 134, 136, 138, 139, 141, 143, 145, 146, 152, 156, 162, 169, 170, 174, 177,
-    #  179, 180, 184, 185, 186, 187, 188, 190, 191, 192, 193, 195, 196, 198, 203, 206, 207, 209, 210, 219, 224, 226, 227,
-    #  228, 230, 233, 244, 248, 250, 251, 253, 254, 262, 263, 264, 265, 267, 268, 270, 271, 272, 273, 274, 275, 277]
+    train_x = feature_selection.transform(train_x)
+    test_x = feature_selection.transform(test_x)
+    clf.fit(train_x,train_y)
+    print(clf.best_score_)
+    print(clf.best_params_)
+    prediction = clf.predict(test_x)
 
-    prediction = pipe.fit_predict(train_x, train_y, test_x,classifier)
-
-
-    # train_x = train_x[:, best]
-    # test_x = test_x[:, best]
-
-    #classifier.set_params(**best_params)
-    # clf.fit(train_x,train_y)
-    # print clf.best_params_
-    # print clf.best_score_
-
-    prediction = clf.best_estimator_.predict(test_x)
-
-
-    # clf.fit(train_x, train_y)
-    # prediction = clf.predict(test_x)
-
-
-    file = "../Predictions/" + path + "/" + "Ridge_Regression" + "_best.csv"
+    file = "../Predictions/" + path + "/" + "Ridge_Regression_BackwardSelection" + "_best.csv"
     kaggleize(prediction, file)
-    # best_score = rmse(prediction,test_y)
-    # print("########################################################")
-    # print ("Best RMSE Score Pipe: %s") %(best_score)
-    # print("########################################################")
-
 
 two_point_one()
-#optimize()
 

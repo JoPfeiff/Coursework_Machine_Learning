@@ -35,6 +35,8 @@ class Pipeline():
         self.best['parameters'] = None
         self.best['estimator'] = None
         self.scores = []
+        self.X = None
+        self.Y = None
         try:
             self.feature_optimizer = steps['feature_optimizer']
             self.hyper_optimizer = steps['hyper_optimizer']
@@ -43,7 +45,8 @@ class Pipeline():
             print "Wrong params"
 
     def fit(self, X, Y):
-
+        self.X = X
+        self.Y = Y
         if self.feature_params is not None:
             all_feature_params = self.generate_parameters(self.feature_params)
             for features in all_feature_params:
@@ -90,14 +93,18 @@ class Pipeline():
             self.feature_optimizer.set_params(**self.best['features'])
         #self.best['estimator'].
         X_current = self.feature_optimizer.transform(X)
-        prediction = self.best['estimator'].predict(X_current)
+        try:
+            prediction = self.best['estimator'].predict(X_current)
+        except:
+            prediction = self.fit_predict(X)
         return prediction
 
-    def fit_predict(self, train_x, train_y, test_x, classifier):
-        train_x = self.feature_optimizer.transform(train_x)
-        test_x = self.feature_optimizer.transform(test_x)
-        classifier.set_params(**self.best['parameters'])
-        classifier.fit(train_x,train_y)
+    def fit_predict(self, test_x):
+        train_x = self.feature_optimizer.transform(self.X)
+        test_x = self.feature_optimizer.transform(self.Y)
+        classifier = self.best['estimator'].fit(train_x, self.Y)
+        # classifier.set_params(**self.best['parameters'])
+        # classifier.fit(train_x,train_y)
         prediction = classifier.predict(test_x)
         return prediction
 
@@ -105,10 +112,7 @@ class Pipeline():
         return self.scores
 
     def score_comparer(self, score1 , score2):
-        if(score1 > score2):
-            return True
-        else:
-            return False
+        return score1 > score2
 
 
     def print_best(self):

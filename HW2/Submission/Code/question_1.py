@@ -19,6 +19,7 @@ from sklearn.metrics import make_scorer
 # import forward_selection as for_selec
 from forward_selection import ForwardSelection
 from backward_selection_drop_worst import BackwardSelectionDropWorst
+from backward_selection import BackwardSelection
 from pipeline import Pipeline
 import matplotlib.pyplot as plt
 from grid_search_cv import GridSearchCV_new
@@ -115,14 +116,14 @@ def one_point_nine():
     # feature_params = {'score_func': [f_regression], 'k': range(1,6) }
     # feature_selection = SelectKBest()
 
-    feature_selection = ForwardSelection(train_x)
+    feature_selection = BackwardSelection(train_x)
     #feature_selection = BackwardSelectionDropWorst(train_x)
     feature_params = None
 
     rmse_scorer = make_scorer(rmse, greater_is_better=False)
 
-    # clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=10)
-    clf = RandomizedSearchCV(classifier, param_distributions=tuned_parameters, n_iter = 1000,scoring=rmse_scorer, cv = 10)
+    clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=10)
+    #clf = RandomizedSearchCV(classifier, param_distributions=tuned_parameters, n_iter = 1000,scoring=rmse_scorer, cv = 10)
 
     steps = {'feature_optimizer': feature_selection, 'hyper_optimizer': clf}
 
@@ -193,6 +194,8 @@ def one_point_seven():
 
     clf.fit(train_x, train_y)
     grid_Scores = clf.grid_scores_
+
+    #cv_scores = clf.
 
     train_scores = []
     test_scores = []
@@ -321,9 +324,9 @@ def one_point_eight():
 
 
 
-one_point_six()
-one_point_seven()
-one_point_eight()
+# one_point_six()
+# one_point_seven()
+# one_point_eight()
 one_point_nine()
 
 
