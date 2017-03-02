@@ -64,7 +64,6 @@ def kaggleize(predictions, file):
 def plot_line_graph(arrays, labels, title_img, x_ticks, tuning_parameter, colors = ['ro-', 'bo-']):
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    #ticks = np.arange(0.0, 0.5, 0.02)
     for i in range(len(arrays)):
         array = arrays[i]
         index = range(len(array))
@@ -86,7 +85,10 @@ def two_point_one():
     rmse_scorer = make_scorer(rmse, greater_is_better=False)
 
 
-
+    ##########################################
+    # This code takes 15h to run. That is why I commented it out
+    # It will produce the features in best_features
+    ##########################################
     # feature_selection = BackwardSelection(train_x)
     # feature_params = None
     # tuned_parameters =    {'alpha': [14000]}
@@ -98,7 +100,7 @@ def two_point_one():
     # prediction = pipe.predict(train_x)
 
 
-# BEST PARAMS
+# BEST PARAMS FROM pipe
 #######################################
     second_best =  [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 25, 31, 32, 33, 36, 37, 39, 40, 46, 51, 54, 55, 57, 62, 65, 70, 71, 76, 84, 87, 91, 94, 103, 105, 106, 107, 112, 115, 122, 127, 128, 130, 132, 133, 135, 136, 145, 146, 147, 151, 163, 170, 172, 174, 177, 180, 184, 188, 191, 195, 200, 203, 206, 207, 210, 213, 214, 218, 219, 223, 224, 226, 228, 234, 236, 240, 241, 243, 246, 248, 251, 252, 255, 259, 261, 262, 263, 266, 267, 271, 272, 274, 275, 277]
     best_features = [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 25, 31, 32, 33, 36, 37,
@@ -107,8 +109,6 @@ def two_point_one():
                      195, 200, 203, 206, 207, 210, 213, 214, 218, 219, 223, 224, 226, 228, 234, 236, 240, 241, 243, 246,
                      248, 251, 252, 255, 259, 261, 262, 263, 266, 267, 271, 272, 274, 275, 277]
 
-    # [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 25, 31, 32, 33, 36, 37, 39, 40, 46, 51, 54, 55, 57, 62, 65, 70, 71, 76, 84, 87, 91, 94, 103, 105, 106, 107, 112, 115, 122, 127, 128, 130, 132, 133, 135, 136, 145, 146, 147, 151, 163, 170, 172, 174, 177, 180, 184, 188, 191, 195, 200, 203, 206, 207, 210, 213, 214, 218, 219, 223, 224, 226, 228, 234, 236, 240, 241, 243, 246, 248, 251, 252, 255, 259, 261, 262, 263, 266, 267, 271, 272, 274, 275, 277]
-# [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 25, 31, 32, 33, 36, 37, 39, 40, 46, 51, 54, 55, 57, 62, 65, 70, 71, 76, 84, 87, 91, 94, 103, 105, 106, 107, 112, 115, 122, 127, 128, 130, 132, 133, 135, 136, 145, 146, 147, 151, 163, 170, 172, 174, 177, 180, 184, 188, 191, 195, 200, 203, 206, 207, 210, 213, 214, 218, 219, 223, 224, 226, 228, 234, 236, 240, 241, 243, 246, 248, 251, 252, 255, 259, 261, 262, 263, 266, 267, 271, 272, 274, 275, 277]
 #######################################
 
 
@@ -140,18 +140,10 @@ def two_point_two():
     train_x, train_y, test_x = get_data(path)
     rmse_scorer = make_scorer(rmse, greater_is_better=False)
     classifier = KNeighborsRegressor()
-    tuned_parameters = {'n_neighbors': range(22,23)}
-    # feature_selection =
-    # classifier = SVR()
-    # tuned_parameters = {"C": [1.0]}
+    tuned_parameters = {'n_neighbors': range(22,26)}
     lasso = LassoCV()
     feature_selection = SelectFromModel(lasso)
-    #sfm.fit(X, y)
-    #n_features = sfm.transform(X).shape[1]
     feature_params = {'threshold' : np.arange(0.05,0.07,0.01)}
-    # feature_selection = VarianceThreshold()
-    # feature_params = {'threshold': np.arange(0.0,0.3,0.1)}
-
     clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=10)
     steps = {'feature_optimizer': feature_selection, 'hyper_optimizer': clf}
     pipe = Pipeline(steps, feature_params)
@@ -170,5 +162,5 @@ def two_point_two():
     kaggleize(prediction, file)
 
 # two_point_one()
-two_point_two()
+#two_point_two()
 

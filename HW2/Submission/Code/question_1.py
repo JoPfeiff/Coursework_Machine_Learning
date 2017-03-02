@@ -248,15 +248,24 @@ def one_point_nine():
 
     classifier = Ridge()
 
-    tuned_parameters = {'alpha': np.arange(0.00,0.01,0.001),
-                        # 'copy_X': [True,False],
-                        # 'fit_intercept': [True,False],
-                        #'max_iter': range(800,1600,200),
-                        'normalize': [True],
-                        'solver': ['sag'],
-                        'tol': np.arange(0.00,0.1,0.001)
-                        #'random_state':
-                        }
+    # tuned_parameters = {'alpha': np.arange(0.00,0.01,0.001),
+    #                     # 'copy_X': [True,False],
+    #                     # 'fit_intercept': [True,False],
+    #                     #'max_iter': range(800,1600,200),
+    #                     'normalize': [True],
+    #                     'solver': ['sag'],
+    #                     'tol': np.arange(0.00,0.1,0.001)
+    #                     #'random_state':
+    #                     }
+
+    tuned_parameters = {'alpha': np.arange(0.00, .0101, 0.001),
+                         'copy_X': [True, False],
+                         'fit_intercept': [True, False],
+                         # 'max_iter': range(800, 1600, 200),
+                         'normalize': [True],
+                         'solver': ['sag'],
+                         'tol': np.arange(0.0, 0.1, 0.01)
+                         }
 
 
 
@@ -288,10 +297,10 @@ def one_point_nine():
 
 
 
-one_point_six()
-one_point_seven()
-one_point_eight()
-one_point_nine()
+# one_point_six()
+# one_point_seven()
+# one_point_eight()
+# one_point_nine()
 
 
 
