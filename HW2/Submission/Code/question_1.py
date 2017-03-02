@@ -29,6 +29,10 @@ import itertools as it
 def rmse(predictions, targets):
     return np.sqrt(mean_squared_error(predictions, targets))
 
+def score_comparer(score1, score2):
+    return score1 > score2
+
+
 def get_data(path):
     path = '../../Data/AirFoil/'
     train = np.load(path + 'train.npy')
@@ -36,22 +40,7 @@ def get_data(path):
     train_x = train[:, 0:train.shape[1] - 1]
     train_y = train[:, -1]
     test_x = test[:, 0:test.shape[1] - 1]
-
-    # Real test targets/outputs
     test_y = test[:, -1]
-    # print "Air Foil:", train_x.shape, train_y.shape, test_x.shape, test_y.shape
-    #
-    #
-    # train = np.load("../../Data/" + path + '/train.npy')
-    # try:
-    #     test = np.load("../../Data/" + path + '/test_distribute.npy')
-    # except:
-    #     test = np.load("../../Data/" + path + '/test_private.npy')
-    # train_x = train[:, 1:]
-    # train_y = train[:, 0]
-    # test_x = test[:, 1:]
-    # test_y = test[:, 0]
-
     return train_x, train_y, test_x, test_y
 
 
@@ -74,85 +63,15 @@ def plot_line_graph(arrays, labels, title_img, x_ticks, tuning_parameter, colors
 
 
 
-
-def one_point_nine():
-
-    train_x, train_y, test_x , test_y = get_data('AirFoil')
-
-    # classifier = LinearRegression()
-    # tuned_parameters = [{'fit_intercept': [True, False],
-    #                      'normalize': [True, False],
-    #                      'copy_X': [True, False],
-    #                      'n_jobs': [-1],  # 2
-    #                      #'classifier__base_estimator__max_depth': range(3, 12, 3),  # 4
-    #                     }]
-
-    classifier = Ridge()
-
-    tuned_parameters = {'alpha': np.arange(0.00,0.01,0.001),
-                        'copy_X': [True,False],
-                        'fit_intercept': [True,False],
-                        'max_iter': range(800,1600,200),
-                        'normalize': [True,False],
-                        'solver': ['auto', 'svd', 'cholesky', 'lsqr', 'sparse_cg', 'sag'],
-                        'tol': np.arange(0.01,0.5,0.01)
-                        #'random_state':
-                        }
-
-    # tuned_parameters = {'alpha': np.arange(1.0,3.0,0.4)#,
-    #                     #'copy_X': [True,False],
-    #                     #'fit_intercept': [True,False],
-    #                     #'max_iter': range(800,1600,200),
-    #                     #'normalize': [True,False],
-    #                     #'solver': ['auto', 'svd', 'cholesky', 'lsqr', 'sparse_cg', 'sag'],
-    #                     #'tol': np.arange(0.8,1.4,0.2)
-    #                     #'random_state':
-    #                     }
-
-
-    # feature_selection = PCA()
-    # feature_params = {'n_components': range(1,6)  }
-    #
-    # feature_params = {'score_func': [f_regression], 'k': range(1,6) }
-    # feature_selection = SelectKBest()
-
-    feature_selection = BackwardSelection(train_x)
-    #feature_selection = BackwardSelectionDropWorst(train_x)
-    feature_params = None
-
-    rmse_scorer = make_scorer(rmse, greater_is_better=False)
-
-    clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=10)
-    #clf = RandomizedSearchCV(classifier, param_distributions=tuned_parameters, n_iter = 1000,scoring=rmse_scorer, cv = 10)
-
-    steps = {'feature_optimizer': feature_selection, 'hyper_optimizer': clf}
-
-    pipe = Pipeline(steps, feature_params)
-    pipe.fit(train_x, train_y)
-    pipe.print_best()
-
-    #plot_line_graph([pipe.get_all_scores()], ["Parameters"], "RMSE Score" ,colors = ['ro-'])
-
-    prediction = pipe.predict(test_x)
-    best_score = rmse(prediction,test_y)
-    print("########################################################")
-    print ("Best RMSE Score Pipe: %s") %(best_score)
-    print("########################################################")
-
-#optimize()
-
-
-
 def one_point_six():
     classifier = Ridge()
     train_x, train_y, test_x, test_y = get_data('AirFoil')
     classifier.fit(train_x,train_y)
     prediction = classifier.predict(test_x)
     score = rmse(prediction, test_y)
-    rmse_scorer = make_scorer(rmse, greater_is_better=False)
 
     print("\n##############################################################")
-    print("Default Ridge Classification RMSE Score = "+ str(score))
+    print("Question 1.6: Default Ridge Classification RMSE Score = "+ str(score))
     print("##############################################################\n")
 
 
@@ -161,58 +80,60 @@ def one_point_seven():
     train_x, train_y, test_x, test_y = get_data('AirFoil')
     rmse_scorer = make_scorer(rmse, greater_is_better=False)
     #Optimizing
-    tuned_parameters = {'alpha': np.arange(0.001, .0101, 0.001),
+    tuned_parameters1 = {'alpha': np.arange(0.00, .0101, 0.001),
                         'copy_X': [True, False],
                         'fit_intercept': [True, False],
                         #'max_iter': range(800, 1600, 200),
-                        'normalize': [True, False],
-                        'solver': ['auto', 'svd', 'cholesky', 'lsqr', 'sparse_cg', 'sag'],
-                        'tol': np.arange(0.1, 1.0, 0.1)
-                        # 'random_state':
+                        'normalize': [True],
+                        'solver': ['sag'],
+                        'tol': np.arange(0.0, 0.1, 0.01)
                         }
 
-    clf = RandomizedSearchCV(classifier, param_distributions=tuned_parameters, n_iter=1000, scoring=rmse_scorer, cv=10)
-    #clf.fit(train_x,train_y)
-    #print clf.best_estimator_
+    clf1 = GridSearchCV(classifier, param_grid=tuned_parameters1, scoring=rmse_scorer, cv=10)
+    #clf = RandomizedSearchCV(classifier, param_distributions=tuned_parameters, n_iter=1000, scoring=rmse_scorer, cv=10)
+    clf1.fit(copy.deepcopy(train_x),copy.deepcopy(train_y))
+    print clf1.best_estimator_
+    print clf1.best_score_
+
 
 
     ###################################################
     # Graph for different alpha values
     ###################################################
-    x_ticks = np.arange(0.00, 0.05, 0.001)
-    tuned_parameters = {'normalize': [True],
+    x_ticks2 = np.arange(0.00, 0.1, 0.001)
+    tuned_parameters2 = {'normalize': [True],
                         'solver': ['sag'],
                         'fit_intercept': [True],
-                        'tol': [0.2],
-                        'copy_X': [True],
-                        'alpha': x_ticks}
+                        'tol': [0.05],
+                        'copy_X': [False],
+                        'alpha': x_ticks2}
 
+    classifier2 = copy.deepcopy(classifier)
 
-
-    clf = GridSearchCV(classifier, param_grid=tuned_parameters, scoring=rmse_scorer, cv=10)
+    clf2 = GridSearchCV(classifier2, param_grid=tuned_parameters2, scoring=rmse_scorer, cv=10)
     #clf = RandomizedSearchCV(classifier, param_distributions=tuned_parameters, n_iter=1000, scoring=rmse_scorer, cv=10)
 
-    clf.fit(train_x, train_y)
-    grid_Scores = clf.grid_scores_
+    clf2.fit(copy.deepcopy(train_x), copy.deepcopy(train_y))
+    grid_Scores2 = clf2.grid_scores_
 
     #cv_scores = clf.
 
-    train_scores = []
-    test_scores = []
-    all_scores = []
-    all_scores.append(train_scores)
-    all_scores.append(test_scores)
-    for elem in grid_Scores:
-        param = elem[0]
-        train_score = elem[1]
-        classifier.set_params(**param)
-        classifier.fit(train_x,train_y)
-        prediction = classifier.predict(test_x)
-        test_score = rmse(prediction,test_y)
-        all_scores[0].append(abs(train_score))
-        all_scores[1].append(abs(test_score))
+    train_scores2 = []
+    test_scores2 = []
+    all_scores2 = []
+    all_scores2.append(train_scores2)
+    all_scores2.append(test_scores2)
+    for elem2 in grid_Scores2:
+        param2 = elem2[0]
+        train_score2 = elem2[1]
+        classifier2.set_params(**param2)
+        classifier2.fit(copy.deepcopy(train_x),copy.deepcopy(train_y))
+        prediction2 = classifier2.predict(test_x)
+        test_score2 = rmse(prediction2,copy.deepcopy(test_y))
+        all_scores2[0].append(abs(train_score2))
+        all_scores2[1].append(abs(test_score2))
 
-    plot_line_graph(all_scores, ["Train Scores", "Validation Scores"], "RMSE Score - Alpha",x_ticks, "Alpha" )
+    plot_line_graph(all_scores2, ["Validation Scores", "Test Scores"], "RMSE Score - Alpha",x_ticks2, "Alpha" )
 
 
 
@@ -220,62 +141,58 @@ def one_point_seven():
     ###################################################
     # Graph for different tol values
     ###################################################
-    x_ticks = np.arange(0.00, 0.5, 0.02)
-    tuned_parameters = {'normalize': [True],
+    x_ticks3 = np.arange(0.00, 0.2, 0.001)
+    tuned_parameters3 = {'normalize': [True],
                         'solver': ['sag'],
                         'fit_intercept': [True],
-                        'tol': x_ticks,
-                        'copy_X': [True],
-                        'alpha': [0.04]}
-
-
-    clf = GridSearchCV(classifier, param_grid=tuned_parameters, scoring=rmse_scorer, cv=10)
+                        'tol': x_ticks3,
+                        'copy_X': [False],
+                        'alpha': [0.005]}
+    classifier3 =  copy.deepcopy(classifier)
+    clf3 = GridSearchCV(classifier, param_grid=tuned_parameters3, scoring=rmse_scorer, cv=10)
     #clf = RandomizedSearchCV(classifier, param_distributions=tuned_parameters, n_iter=1000, scoring=rmse_scorer, cv=10)
 
-    clf.fit(train_x, train_y)
-    grid_Scores = clf.grid_scores_
+    clf3.fit(copy.deepcopy(train_x), copy.deepcopy(train_y))
+    grid_Scores3 = clf3.grid_scores_
 
-    train_scores = []
-    test_scores = []
-    all_scores = []
-    all_scores.append(train_scores)
-    all_scores.append(test_scores)
-    for elem in grid_Scores:
-        param = elem[0]
-        train_score = elem[1]
-        classifier.set_params(**param)
-        classifier.fit(train_x,train_y)
-        prediction = classifier.predict(test_x)
-        test_score = rmse(prediction,test_y)
-        all_scores[0].append(abs(train_score))
-        all_scores[1].append(abs(test_score))
+    train_scores3 = []
+    test_scores3 = []
+    all_scores3 = []
+    all_scores3.append(train_scores3)
+    all_scores3.append(test_scores3)
+    for elem3 in grid_Scores3:
+        param3 = elem3[0]
+        train_score3 = elem3[1]
+        classifier3.set_params(**param3)
+        classifier3.fit(copy.deepcopy(train_x),copy.deepcopy(train_y))
+        prediction3 = classifier3.predict(copy.deepcopy(test_x))
+        test_score3 = rmse(prediction3,test_y)
+        all_scores3[0].append(abs(train_score3))
+        all_scores3[1].append(abs(test_score3))
 
-    plot_line_graph(all_scores, ["Train Scores", "Validation Scores"], "RMSE Score - Tol",x_ticks, "Tol" )
+    plot_line_graph(all_scores3, ["Validation Scores", "Test Scores"], "RMSE Score - Tol",x_ticks3, "Tol" )
 
 
     #################################################
     # Predict with best parameters
     #################################################
-    best_parameters = {'normalize': True,
+    best_parameters4 = {'normalize': True,
                             'solver': 'sag',
                             'fit_intercept': True,
-                            'tol': 0.2, #'tol': 0.069999999999999993
-                            'copy_X': True,
-                            'alpha': 0.007}#0.04} # 4.7880535399
-    classifier.set_params(**best_parameters)
-    classifier.fit(train_x,train_y)
-    prediction = classifier.predict(test_x)
-    best_score = rmse(prediction,test_y)
+                            'tol': 0.05, #'tol': 0.069999999999999993
+                            'copy_X': False,
+                            'alpha': 0.005}#0.04} # 4.7880535399
+    classifier4 = copy.deepcopy(classifier)
+    classifier4.set_params(**best_parameters4)
+    classifier4.fit(copy.deepcopy(train_x),copy.deepcopy(train_y))
+    prediction4 = classifier4.predict(copy.deepcopy(test_x))
+    best_score4 = rmse(prediction4,copy.deepcopy(test_y))
     print("########################################################")
-    print ("Best RMSE Score Hyper Parameter Selection: %s") %(best_score)
+    print ("Question 1.7: Best RMSE Score Hyper Parameter Selection: %s") %(best_score4)
     print("########################################################")
 
 
-def score_comparer(score1, score2):
-    if (score1 > score2):
-        return True
-    else:
-        return False
+
 
 def one_point_eight():
     best = {}
@@ -317,16 +234,63 @@ def one_point_eight():
     prediction = best['estimator'].predict(X_current)
     best_score = rmse(prediction, test_y)
     print("########################################################")
-    print("The Following Features were chosen: %s") %(best['features'])
-    print ("Best RMSE Score Parameter Selection: %s") % (best_score)
+    print("Question 1.8: The Following Features were chosen: %s") %(best['features'])
+    print ("Question 1.8: Best RMSE Score Parameter Selection: %s") % (best_score)
     print("########################################################")
 
 
 
+def one_point_nine():
 
-# one_point_six()
-# one_point_seven()
-# one_point_eight()
+    train_x, train_y, test_x , test_y = get_data('AirFoil')
+
+
+
+    classifier = Ridge()
+
+    tuned_parameters = {'alpha': np.arange(0.00,0.01,0.001),
+                        # 'copy_X': [True,False],
+                        # 'fit_intercept': [True,False],
+                        #'max_iter': range(800,1600,200),
+                        'normalize': [True],
+                        'solver': ['sag'],
+                        'tol': np.arange(0.00,0.1,0.001)
+                        #'random_state':
+                        }
+
+
+
+    feature_selection = BackwardSelection(train_x)
+    #feature_selection = BackwardSelectionDropWorst(train_x)
+    feature_params = None
+
+    rmse_scorer = make_scorer(rmse, greater_is_better=False)
+
+    clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=10)
+
+    steps = {'feature_optimizer': feature_selection, 'hyper_optimizer': clf}
+
+    pipe = Pipeline(steps, feature_params)
+    pipe.fit(train_x, train_y)
+    pipe.print_best()
+
+    #plot_line_graph([pipe.get_all_scores()], ["Parameters"], "RMSE Score" ,colors = ['ro-'])
+
+    prediction = pipe.predict(test_x)
+    best_score = rmse(prediction,test_y)
+    print("########################################################")
+    print ("Question 1.9: Best RMSE Score Pipe: %s") %(best_score)
+    print("########################################################")
+
+#optimize()
+
+
+
+
+
+one_point_six()
+one_point_seven()
+one_point_eight()
 one_point_nine()
 
 

@@ -29,7 +29,9 @@ class BackwardSelection():
             self.betterized = True
 
     def get_new_heap(self):
-        if (len(self.heap) == 0) and not self.betterized:
+        if(self.best_score == -float('inf') ):
+            return self.best_params
+        elif (len(self.heap) == 0) and not self.betterized:
             print self.best_params
             return  self.betterized
         elif(len(self.best_params) == 1):

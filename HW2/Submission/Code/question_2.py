@@ -23,8 +23,15 @@ from pipeline import Pipeline
 import matplotlib.pyplot as plt
 from grid_search_cv import GridSearchCV_new
 import time
-
+from sklearn.svm import SVR
 import itertools as it
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.feature_selection import VarianceThreshold
+from sklearn.linear_model import LassoCV
+
+from sklearn.feature_selection import SelectFromModel
+
+
 
 def rmse(predictions, targets):
     return np.sqrt(mean_squared_error(predictions, targets))
@@ -76,6 +83,20 @@ def two_point_one():
     train_x, train_y, test_x = get_data(path)
 
     classifier = Ridge()
+    rmse_scorer = make_scorer(rmse, greater_is_better=False)
+
+
+
+    # feature_selection = BackwardSelection(train_x)
+    # feature_params = None
+    # tuned_parameters =    {'alpha': [14000]}
+    # clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=2)
+    # steps = {'feature_optimizer': feature_selection, 'hyper_optimizer': clf}
+    # pipe = Pipeline(steps, feature_params)
+    # pipe.fit(train_x, train_y)
+    # pipe.print_best()
+    # prediction = pipe.predict(train_x)
+
 
 # BEST PARAMS
 #######################################
@@ -100,25 +121,10 @@ def two_point_one():
     # score = 29.4503547388
     # kaggle = 24.47664
 
-    feature_selection = BackwardSelection(train_x)
-    feature_params = None
-    feature_selection.set_best_features(best_features)
-
-    rmse_scorer = make_scorer(rmse, greater_is_better=False)
-
     clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=2)
 
-    steps = {'feature_optimizer': feature_selection, 'hyper_optimizer': clf}
-
-
-    # pipe = Pipeline(steps, feature_params)
-    #
-    # pipe.fit(train_x, train_y)
-    # pipe.print_best()
-    # prediction = pipe.predict(train_x)
-
-    train_x = feature_selection.transform(train_x)
-    test_x = feature_selection.transform(test_x)
+    train_x = train_x[:, best_features]
+    test_x = test_x[:, best_features]
     clf.fit(train_x,train_y)
     print(clf.best_score_)
     print(clf.best_params_)
@@ -127,5 +133,42 @@ def two_point_one():
     file = "../Predictions/" + path + "/" + "Ridge_Regression_BackwardSelection" + "_best.csv"
     kaggleize(prediction, file)
 
-two_point_one()
+
+def two_point_two():
+
+    path = 'BlogFeedback'
+    train_x, train_y, test_x = get_data(path)
+    rmse_scorer = make_scorer(rmse, greater_is_better=False)
+    classifier = KNeighborsRegressor()
+    tuned_parameters = {'n_neighbors': range(22,23)}
+    # feature_selection =
+    # classifier = SVR()
+    # tuned_parameters = {"C": [1.0]}
+    lasso = LassoCV()
+    feature_selection = SelectFromModel(lasso)
+    #sfm.fit(X, y)
+    #n_features = sfm.transform(X).shape[1]
+    feature_params = {'threshold' : np.arange(0.05,0.07,0.01)}
+    # feature_selection = VarianceThreshold()
+    # feature_params = {'threshold': np.arange(0.0,0.3,0.1)}
+
+    clf = GridSearchCV(classifier, param_grid=tuned_parameters,scoring=rmse_scorer, cv=10)
+    steps = {'feature_optimizer': feature_selection, 'hyper_optimizer': clf}
+    pipe = Pipeline(steps, feature_params)
+    pipe.fit(train_x, train_y)
+    pipe.print_best()
+    prediction = pipe.predict(test_x)
+
+    #Fitting Finished
+    # ###########################
+    # best score = 25.734737594
+    # best features = {'threshold': 0.044999999999999998}
+    # best parameters = {'n_neighbors': 24}
+    # ###########################
+
+    file = "../Predictions/" + path + "/" + "best.csv"
+    kaggleize(prediction, file)
+
+# two_point_one()
+two_point_two()
 

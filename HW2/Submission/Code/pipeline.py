@@ -18,6 +18,7 @@ from math import sqrt
 from sklearn.metrics import make_scorer
 # import forward_selection as for_selec
 from forward_selection import ForwardSelection
+
 import matplotlib.pyplot as plt
 
 import time
@@ -54,6 +55,7 @@ class Pipeline():
                 X_current = self.feature_optimizer.fit_transform(X,Y)
                 self.hyper_optimizer.fit(X_current,Y)
                 score = self.hyper_optimizer.best_score_
+                print score
                 if(self.score_comparer(score, self.best['score'])):
                     self.best['score'] = score
                     self.best['features'] = features
@@ -82,7 +84,7 @@ class Pipeline():
 
                 end = time.time()
 
-                print("one iteration = %s seconds, current heap is %s long") %(end - start, len(self.feature_optimizer.heap) )
+                print("prediction = %s one iteration = %s seconds, current heap is %s long") %(score, end - start, len(self.feature_optimizer.heap) )
 
 
 
