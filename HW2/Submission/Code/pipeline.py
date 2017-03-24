@@ -1,30 +1,8 @@
-import numpy as np
-from sklearn.ensemble import AdaBoostClassifier
-import csv
-from sklearn.cross_validation import cross_val_score
-from sklearn.grid_search import GridSearchCV, RandomizedSearchCV
-from sklearn.ensemble import RandomForestClassifier
 import warnings
 warnings.filterwarnings('ignore')
-from sklearn.linear_model import LinearRegression
 import copy
-#from sklearn.pipeline import Pipeline
-from sklearn.decomposition import PCA
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import f_regression
-from sklearn.linear_model import Ridge
-from sklearn.metrics import mean_squared_error
-from math import sqrt
-from sklearn.metrics import make_scorer
-# import forward_selection as for_selec
-from forward_selection import ForwardSelection
-
-import matplotlib.pyplot as plt
-
 import time
-
 import itertools as it
-
 
 
 class Pipeline():
