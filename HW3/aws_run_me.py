@@ -4,12 +4,49 @@ import time
 
 #============
 #Replace the code below with your code
-def computeWeights(rdd):
-   return np.random.randn(41)   
-   
-def computeError(w,rdd_test):
-   return 0     
+    
+def computeXY(rdd):    
+    '''
+    Compute the features times targets term
+    needed by OLS. Return as a numpy array
+    of size (41,)
+    '''
 
+    return rdd.map(lambda r: np.multiply(add_bias(r),r[-1])).reduce(lambda x,y: x+y)
+
+def computeXX(rdd):
+    '''
+    Compute the outer product term
+    needed by OLS. Return as a numpy array
+    of size (41,41)
+    '''    
+    return rdd.map(lambda r: np.outer(add_bias(r),add_bias(r))).reduce(lambda x,y: x+y)
+    
+def computeWeights(rdd):  
+    '''
+    Compute the linear regression weights.
+    Return as a numpy array of shape (41,)
+    '''
+    return np.matmul(np.linalg.inv(computeXX(rdd)),computeXY(rdd))
+    
+def computePredictions(w,rdd):  
+    '''
+    Compute predictions given by the input weight vector
+    w. Return an RDD with one prediction per row.
+    '''
+    return rdd.map(lambda r: np.dot(w,add_bias(r)))
+    
+def computeError(w,rdd):
+    '''
+    Compute the MAE of the predictions.
+    Return as a float.
+    '''
+    count = rdd.map(lambda r: 1).reduce(lambda x,y: x+y)
+    rdd = rdd.map(lambda r: (r[-1], np.dot(w,add_bias(r))))
+    return rdd.map(lambda r: abs(r[0]-r[1])).reduce(lambda x,y: x+y)/count
+
+def add_bias(array):
+    return np.append(array[:-1],1)
 #============
 
 #Convert rdd rows to numpy arrays
@@ -33,8 +70,8 @@ for i in [1,2,3,4,5,6,7,8]:
 
     start=time.time()
 
-    rdd_test = numpyify(sc.textFile("s3://589hw03/test_data_ec2.csv"))        
-    rdd_train = numpyify(sc.textFile("s3://589hw03/train_data_ec2.csv"))
+    rdd_test = numpyify(sc.textFile("test_data.csv"))        
+    rdd_train = numpyify(sc.textFile("train_data.csv"))
 
     w = computeWeights(rdd_train)
     err = computeError(w,rdd_test)
@@ -47,3 +84,8 @@ for i in [1,2,3,4,5,6,7,8]:
 
 print "\n\n\n\n\n"
 print times
+
+
+
+
+#[[1, 401.6489758491516], [2, 210.33531498908997], [3, 144.43129706382751], [4, 112.32910704612732], [5, 133.5269730091095], [6, 129.54033708572388], [7, 138.04477715492249], [8, 141.1620671749115]]
