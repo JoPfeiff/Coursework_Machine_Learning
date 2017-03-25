@@ -22,7 +22,7 @@ def computeXX(rdd):
     '''    
     return rdd.map(lambda r: np.outer(add_bias(r),add_bias(r))).reduce(lambda x,y: x+y)
     
-def computeWeights(rdd):
+def computeWeights(rdd):  
     '''
     Compute the linear regression weights.
     Return as a numpy array of shape (41,)
@@ -47,6 +47,22 @@ def computeError(w,rdd):
 
 def add_bias(array):
     return np.append(array[:-1],1)
+
+
+
+def get_denom(rdd, min):
+    max = rdd.reduce(lambda x,y: np.maximum(x,y))
+    return   max - min
+
+def get_min(rdd):
+    return rdd.reduce(lambda x,y: np.minimum(x,y))
+
+def normalize(rdd, denom, min):
+    return rdd.map(lambda r: (r - min) / denom )
+
+
+
+
 #============
 
 #Convert rdd rows to numpy arrays
@@ -73,6 +89,12 @@ for i in [5]:
     rdd_test = numpyify(sc.textFile("s3://589hw03/test_data_ec2.csv"))
     rdd_train = numpyify(sc.textFile("s3://589hw03/train_data_ec2.csv"))
 
+    min = get_min(rdd_train)
+    denom = get_denom(rdd_train,min)
+
+    rdd_train = normalize(rdd_train, denom,min)
+    rdd_test = normalize(rdd_test, denom,min)
+
     w = computeWeights(rdd_train)
     err = computeError(w,rdd_test)
     
@@ -87,40 +109,7 @@ print times
 
 
 
-
-#[[1, 401.6489758491516], [2, 210.33531498908997], [3, 144.43129706382751], [4, 112.32910704612732], [5, 133.5269730091095], [6, 129.54033708572388], [7, 138.04477715492249], [8, 141.1620671749115]]
-
-#Cores 1: MAE: 0.7648 Time: 401.65
-                                                                                
+#Cores 5: MAE: 0.1700 Time: 186.38
 
 
-#Cores 2: MAE: 0.7648 Time: 210.34
-                                                                                
-
-
-#Cores 3: MAE: 0.7648 Time: 144.43
-                                                                                
-
-
-#Cores 4: MAE: 0.7648 Time: 112.33
-                                                                                
-
-
-#Cores 5: MAE: 0.7648 Time: 133.53
-                                                                                
-
-
-#Cores 6: MAE: 0.7648 Time: 129.54
-                                                                                
-
-
-#Cores 7: MAE: 0.7648 Time: 138.04
-                                                                                
-
-
-#Cores 8: MAE: 0.7648 Time: 141.16
-
-
-
-
-
+#[[5, 186.38388180732727]]
