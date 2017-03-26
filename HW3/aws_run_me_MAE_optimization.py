@@ -1,6 +1,11 @@
-from pyspark import SparkContext, SparkConf
+
 import numpy as np
 import time
+
+from pyspark import SparkContext, SparkConf
+from pyspark.mllib.regression import LabeledPoint, LinearRegressionWithSGD, LinearRegressionModel, LassoWithSGD
+
+#pyspark.ml.regression.LinearRegression
 
 #============
 #Replace the code below with your code
@@ -58,7 +63,7 @@ def get_min(rdd):
     return rdd.reduce(lambda x,y: np.minimum(x,y))
 
 def normalize(rdd, denom, min):
-    return rdd.map(lambda r: (r - min) / denom )
+    return rdd.map(lambda r: np.append((r[:-1] - min[:-1]) / denom[:-1],r[-1]) )
 
 
 
@@ -80,20 +85,30 @@ sc.stop()
 
 for i in [5]:
 
-    conf = SparkConf().set("spark.executor.instances",i).set("spark.executor.cores",1).set("spark.executor.memory","2G").set("spark.dynamicAllocation.enabled","false")
+    conf = SparkConf().set("spark.executor.instances",i).set("spark.executor.cores",1)\
+        .set("spark.executor.memory","2G").set("spark.dynamicAllocation.enabled","false")
     sc = SparkContext(master, "aws_run_me", conf=conf)
     sc.setLogLevel("ERROR")
 
     start=time.time()
 
-    rdd_test = numpyify(sc.textFile("s3://589hw03/test_data_ec2.csv"))
-    rdd_train = numpyify(sc.textFile("s3://589hw03/train_data_ec2.csv"))
+    rdd_test = numpyify(sc.textFile("s3://589hw03/test_data_ec2.csv")).cache()
+    rdd_train = numpyify(sc.textFile("s3://589hw03/train_data_ec2.csv")).cache()
 
     min = get_min(rdd_train)
     denom = get_denom(rdd_train,min)
 
-    rdd_train = normalize(rdd_train, denom,min)
-    rdd_test = normalize(rdd_test, denom,min)
+    rdd_test = rdd_test.map(lambda r: LabeledPoint(r[-1], r[:-1])).cache()
+    rdd_train = rdd_train.map(lambda r: LabeledPoint(r[-1], r[:-1])).cache()
+
+    #model = LinearRegressionWithSGD.train(rdd_train)
+    model = LassoWithSGD.train(rdd_train)
+
+    valuesAndPreds = rdd_test.map(lambda p: (p.label, model.predict(p.features)))
+    err = valuesAndPreds.map(lambda (v, p): abs(v - p)).reduce(lambda x, y: x + y) / valuesAndPreds.count()
+
+    rdd_train = normalize(rdd_train, denom,min).cache()
+    rdd_test = normalize(rdd_test, denom,min).cache()
 
     w = computeWeights(rdd_train)
     err = computeError(w,rdd_test)
@@ -106,10 +121,3 @@ for i in [5]:
 
 print "\n\n\n\n\n"
 print times
-
-
-
-#Cores 5: MAE: 0.1700 Time: 186.38
-
-
-#[[5, 186.38388180732727]]

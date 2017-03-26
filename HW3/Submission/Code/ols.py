@@ -1,20 +1,6 @@
 import numpy as np
 
 
-
-def get_denom(rdd, min):
-    max = rdd.reduce(lambda x,y: np.maximum(x,y))
-    return   max - min
-
-def get_min(rdd):
-    #return rdd.reduce(lambda x,y: np.amin(x,y))
-    return rdd.reduce(lambda x,y: np.minimum(x,y))
-    # return rdd.reduce(lambda x,y: )
-
-
-def normalize(rdd, denom, min):
-    return rdd.map(lambda r: (r - min) / denom )
-
 def computeXY(rdd):    
     '''
     Compute the features times targets term
@@ -22,14 +8,6 @@ def computeXY(rdd):
     of size (41,)
     '''
 
-    # min = get_min(rdd)
-    # max = get_max(rdd)
-    # denom = get_max(rdd) - min
-    # test = rdd.map(lambda r: (r - min) / denom).collect
-    # return rdd.map(lambda r: (r - min) / denom)
-    min = get_min(rdd)
-    denom = get_denom(rdd, min )
-    rdd = normalize(rdd, denom, min)
     return rdd.map(lambda r: np.multiply(add_bias(r),r[-1])).reduce(lambda x,y: x+y)
 
 def computeXX(rdd):

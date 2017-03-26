@@ -62,18 +62,20 @@ times=[]
 sc = SparkContext(master, "aws_run_me")
 sc.stop()
 
-for i in [5]:
+for i in [1,2,3,4,5,6,7,8]:
 
-    conf = SparkConf().set("spark.executor.instances",i).set("spark.executor.cores",1).set("spark.executor.memory","2G").set("spark.dynamicAllocation.enabled","false")
+    conf = SparkConf().set("spark.executor.instances",i).set("spark.executor.cores",1)\
+        .set("spark.executor.memory","2G").set("spark.dynamicAllocation.enabled","false")
     sc = SparkContext(master, "aws_run_me", conf=conf)
     sc.setLogLevel("ERROR")
 
     start=time.time()
 
-    rdd_test = numpyify(sc.textFile("s3://589hw03/test_data_ec2.csv"))
-    rdd_train = numpyify(sc.textFile("s3://589hw03/train_data_ec2.csv"))
+    rdd_test = numpyify(sc.textFile("s3://589hw03/test_data_ec2.csv")).cache()
+    rdd_train = numpyify(sc.textFile("s3://589hw03/train_data_ec2.csv")).cache()
 
     w = computeWeights(rdd_train)
+    rdd_train.persist()
     err = computeError(w,rdd_test)
     
     this_time =  time.time()-start
