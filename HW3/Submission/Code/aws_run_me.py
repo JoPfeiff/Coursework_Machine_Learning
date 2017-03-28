@@ -71,8 +71,8 @@ for i in [1,2,3,4,5,6,7,8]:
 
     start=time.time()
 
-    rdd_test = numpyify(sc.textFile("s3://589hw03/test_data_ec2.csv")).cache()
-    rdd_train = numpyify(sc.textFile("s3://589hw03/train_data_ec2.csv")).cache()
+    rdd_test = numpyify(sc.textFile("s3://589hw03/test_data_ec2.csv"))
+    rdd_train = numpyify(sc.textFile("s3://589hw03/train_data_ec2.csv"))
 
     w = computeWeights(rdd_train)
     rdd_train.persist()

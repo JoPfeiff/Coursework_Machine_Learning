@@ -47,8 +47,9 @@ def computeError(w, rdd):
     Return as a float.
     '''
     count = rdd.map(lambda r: 1).reduce(lambda x, y: x + y)
-    rdd = rdd.map(lambda r: (r[-1], np.dot(w, add_bias(r))))
-    return rdd.map(lambda r: abs(r[0] - r[1])).reduce(lambda x, y: x + y) / count
+    # rdd = rdd.map(lambda r: (r[-1], np.dot(w, add_bias(r))))
+    # return rdd.map(lambda r: abs(r[0] - r[1])).reduce(lambda x, y: x + y) / count
+    return rdd.map(lambda r: abs(r[-1] - np.dot(w, add_bias(r)))).reduce(lambda x, y: x + y) / count
 
 
 def add_bias(array):
