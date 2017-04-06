@@ -5,7 +5,7 @@ def count(rdd):
     Computes the number of rows in rdd.
     Returns the answer as a float.
     '''
-    return rdd.map(lambda r: 1).reduce(lambda x,y: x+y)
+    return float(rdd.map(lambda r: 1).reduce(lambda x,y: x+y))
 
 def mean(rdd):
     '''
