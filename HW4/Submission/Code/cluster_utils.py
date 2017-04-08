@@ -1,12 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+import math
 def cluster_quality(X,Z,K):
     '''
     Compute a cluster quality score given a data matrix X (N,D), a vector of 
     cluster indicators Z (N,), and the number of clusters K.
     '''
-    return 0
+    score = 0
+
+    for i in range(len(X)):
+        for j in range(len(X)):
+            if Z[i] == Z[j]:
+                score += np.linalg.norm(X[i] - X[j])
+
+    return score / 2
     
 def cluster_proportions(Z,K):
     '''
@@ -15,8 +22,9 @@ def cluster_proportions(Z,K):
     The proportion p[k]=Nk/N where Nk are the number of cases assigned to
     cluster k. Output shape must be (K,)
     '''
-    p = np.ones((K,))/float(K)
-    return p
+
+    return np.bincount(Z)/ float(len(Z))
+
         
 def cluster_means(X,Z,K):
     '''
@@ -28,6 +36,14 @@ def cluster_means(X,Z,K):
     '''
     D = X.shape[1]
     mu = np.zeros((K,D))
+
+    for i in range(len(X)):
+        mu[Z[i]] += X[i]
+
+    bincount = np.bincount(Z)
+    for i in range(len(mu)):
+        mu[i] = mu[i]/bincount[i]
+
     return mu
     
 def show_means(mu,p):

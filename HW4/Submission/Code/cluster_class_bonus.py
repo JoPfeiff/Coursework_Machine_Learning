@@ -2,12 +2,16 @@ import numpy as np
 from sklearn.metrics import accuracy_score
 from sklearn.cluster import KMeans
 import random
-class cluster_class:
+from sklearn.linear_model import LogisticRegression
+
+
+class cluster_class_bonus:
     def __init__(self, K):
         '''
         Create a cluster classifier object
         '''
         self.cluster = KMeans(n_clusters=K, random_state=10)
+        self.classifier = LogisticRegression()
 
         self.pred_list = [0]*K
         self.K = K  #
@@ -19,16 +23,8 @@ class cluster_class:
 
         self.cluster.fit(X)
         labels = self.cluster.labels_
-        counter = np.zeros(( self.K , max(Y)))
-        for i in range(0,len(Y)):
-            counter[labels[i]][Y[i]-1] += 1
-        for j in range(0,self.K):
-            highest = max(counter[j])
-            highest_values = []
-            for k in range(0,max(Y)):
-               if counter[j][k] == highest:
-                   highest_values.append(k)
-            self.pred_list[j] = random.choice(highest_values)+1
+        self.classifier.fit(labels.reshape((-1,1)),Y)
+
 
 
     def predict(self, X):
@@ -37,8 +33,7 @@ class cluster_class:
         '''
 
         labels = self.cluster.predict(X)
-        for i in range(0,len(labels)):
-            labels[i] = self.pred_list[labels[i]]
+        labels = self.classifier.predict(labels.reshape((-1,1)))
 
         return labels
 
